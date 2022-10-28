@@ -1,0 +1,24 @@
+ru:
+  aliases:
+    _timestamps_alias: &timestamps
+      id: Ид-р
+      created_at: Создан
+      updated_at: Изменён
+  activerecord:
+    models:
+      brand:
+        one: Брэнд
+        two: Брэнды
+        other: Брэнды
+    attributes:
+      brand:
+        id: Ид-р
+        name: Название
+        state: Состояние
+  activemodel:
+    errors:
+      models:
+        brand/http_service:
+          attributes:
+            brand_service_url:
+              blank: Отсутствует параметр конфигурации brand_service_url. Должен быть установлен в переменную окружения 'BRAND_SERVICE_URL'

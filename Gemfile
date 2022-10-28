@@ -71,6 +71,7 @@ end
 
 gem 'activeadmin'
 gem 'activeadmin_blaze_theme'
+gem 'activeresource'
 
 gem 'haml'
 gem 'devise'
@@ -88,4 +89,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
 gem 'breadcrumbs_on_rails'
-
+gem 'faraday'
