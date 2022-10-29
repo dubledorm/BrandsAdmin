@@ -38,4 +38,9 @@ RSpec.describe Brand, type: :model do
     it { expect(subject).to be_valid }
     it { expect(JSON.parse(subject.to_json)['files'].count).to eq(2) }
   end
+
+  describe 'simple brand' do
+    it { expect(Brand.new({ name: 'test' })).to be_valid }
+    it { expect(Brand.new({})).to be_invalid }
+  end
 end

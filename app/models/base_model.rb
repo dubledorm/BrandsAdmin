@@ -4,6 +4,7 @@
 class BaseModel
   include ActiveModel::Model
   include ActiveModel::Serializers::JSON
+  extend ActiveModel::Translation
 
   def initialize(hash_attributes = {})
     self.attributes = hash_attributes
@@ -13,7 +14,7 @@ class BaseModel
     return unless hash
 
     hash.each do |key, value|
-      send("#{translate_file_names_hash[key]}=", parse_attribute(translate_file_names_hash[key], value))
+      send("#{translate_file_names_hash[key.to_s]}=", parse_attribute(translate_file_names_hash[key.to_s], value))
     end
   end
 

@@ -1,0 +1,9 @@
+.attributes_table#attribute_table_brand
+  %table( cellspacing='0' cellpadding='0' border='0')
+    %tbody
+      - subject.class.columns.each do |attribute_name|
+        %tr.row
+          %th
+            = subject.class.human_attribute_name(attribute_name)
+          %td
+            = subject.send(attribute_name)

@@ -1,0 +1,4 @@
+%tr
+  - file.class.columns.each do |attribute_name|
+    %td.col
+      = file.send(attribute_name)

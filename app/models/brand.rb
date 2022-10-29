@@ -4,7 +4,7 @@ class Brand < BaseModel
 
   attr_accessor :id, :name, :state, :files, :building_history, :date_of_create, :date_of_update
 
-  validates :id, :name, :state, presence: true
+  validates :name, presence: true
 
   TRANSLATE_FIELD_NAMES = { 'id' => :id,
                             'name' => :name,
@@ -14,6 +14,11 @@ class Brand < BaseModel
                             'dateCreate' => :date_of_create,
                             'dateUpdate' => :date_of_update }.freeze
 
+  def initialize_dup(other)
+    @files = []
+    @building_history = []
+    super
+  end
   def translate_file_names_hash
     TRANSLATE_FIELD_NAMES
   end
@@ -26,20 +31,16 @@ class Brand < BaseModel
   end
 
   def self.columns
-    %i[id name state].map { |attribute_name| Column.new(name: attribute_name) }
+    %i[id name state date_of_create date_of_update]
   end
 
-  def self.find(*ids)
-    Brand.new({ id: 1, name: 'Name', state: 'STATE' })
+  def self.primary_key
+    'id'
   end
 
-  # def self.primary_key
-  #   'id'
-  # end
-  #
-  # def self.inheritance_column
-  #   'id'
-  # end
+  def self.inheritance_column
+    'id'
+  end
 
   # def self.ransack(params = {}, options = {})
   #   byebug

@@ -1,0 +1,39 @@
+.table_tools
+.paginated_collection
+  .paginated_collection_contents
+    .index_content
+      .index_as_table
+        %table(class='index_table index' paginator='true' cellspacing='0' cellpadding='0')
+          %thead
+            %tr
+              %th.col
+                = Brand.human_attribute_name(:id)
+              %th.col
+                = Brand.human_attribute_name(:name)
+              %th.col
+                = Brand.human_attribute_name(:state)
+              %th.col
+                = Brand.human_attribute_name(:date_of_create)
+              %th.col
+                = Brand.human_attribute_name(:date_of_update)
+              %th.col
+                = I18n.t('actions')
+          %tbody
+            - @brand_collection.each do |brand|
+              %tr
+                %td.col
+                  = brand.id
+                %td.col
+                  = brand.name
+                %td.col
+                  = brand.state
+                %td.col
+                  = brand.date_of_create
+                %td.col
+                  = brand.date_of_update
+                %td.col.col_actions
+                  .table_actions
+                    = link_to I18n.t('show'), admin_brandpage_show_path(id: brand.id), class: 'view_link member_link c-button c-button--info u-xsmall'
+                    = link_to I18n.t('edit'), admin_brandpage_edit_path(id: brand.id), class: 'edit_link member_link c-button c-button--info u-xsmall'
+                    = link_to I18n.t('delete'), admin_brandpage_delete_path(id: brand.id), class: 'delete_link member_link c-button c-button--error u-xsmall',
+                    data: {confirm: I18n.t('delete_brand_sure'), method: :delete}

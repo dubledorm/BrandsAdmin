@@ -1,0 +1,10 @@
+.panel
+  %h3
+    = Brand.model_name.human
+  .panel_contents
+    = render partial: 'shared/attribute_table', locals: { subject: @brand }
+.panel
+  %h3
+    = BrandFile.model_name.human(count: 3)
+  .panel_contents
+    = render partial: 'brand_files', locals: { brand: @brand }

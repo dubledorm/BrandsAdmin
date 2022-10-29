@@ -1,5 +1,0 @@
-table_for assigns[:brand] do
-  column :id
-  column :name
-  column :state
-end

@@ -5,20 +5,34 @@ ru:
       created_at: Создан
       updated_at: Изменён
   activerecord:
+  activemodel:
     models:
       brand:
         one: Брэнд
         two: Брэнды
         other: Брэнды
+      brand_file:
+        one: Файл
+        two: Файлы
+        other: Файлы
     attributes:
       brand:
         id: Ид-р
         name: Название
         state: Состояние
-  activemodel:
+      brand_file:
+        name: Имя
+        path: Маршрут
+        full_name: Полное имя
+        date_of_create: Дата создания
+
     errors:
       models:
         brand/http_service:
           attributes:
             brand_service_url:
               blank: Отсутствует параметр конфигурации brand_service_url. Должен быть установлен в переменную окружения 'BRAND_SERVICE_URL'
+        brand:
+          attributes:
+            name:
+              blank: Поле должно быть заполнено

@@ -19,7 +19,7 @@ class BrandFile < BaseModel
     value
   end
 
-  def self.find(*ids)
-    BrandFile.new({ name: 'Name' })
+  def self.columns
+    %i[name path full_name date_of_create]
   end
 end
