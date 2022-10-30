@@ -18,5 +18,7 @@ module BrandsAdmin
 
     config.i18n.default_locale = :ru
     config.x.brand_service_url = ENV['BRAND_SERVICE_URL']
+    # config.action_dispatch.show_exceptions = false
+    # config.action_dispatch.show_detailed_exceptions = false
   end
 end

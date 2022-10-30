@@ -10,11 +10,8 @@
     %fieldset.inputs
       %ol
         %li.input.required.stringish
-          = f.label(:name, class: 'label')
-          = f.text_field(:name)
-          - unless @brand.errors[:name].empty?
-            %p.inline-errors
-              = @brand.errors[:name].join(', ')
+          = f.file_field :file_name, webkitdirectory: true, multiple: true
+
     %fieldset.actions
       %ol
         %li.action.input_action

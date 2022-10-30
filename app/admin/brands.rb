@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# encoding: UTF-8
 
 ActiveAdmin.register_page 'BrandPage' do
   menu label: Brand.model_name.human(count: 3)
@@ -8,7 +9,9 @@ ActiveAdmin.register_page 'BrandPage' do
   end
 
   action_item :add_files, only: :show do
-    link_to I18n.t('add_files_to_brand'), admin_brandpage_add_files_to_brand_path(id: params['id'])
+    if Brand::HttpService.new.brand!(params[:id]).state == 'Draft'
+      link_to I18n.t('add_files_to_brand'), admin_brandpage_add_files_to_brand_path(id: params['id'])
+    end
   end
 
   content do
@@ -64,17 +67,25 @@ ActiveAdmin.register_page 'BrandPage' do
 
   page_action :save_files_to_brand, method: :post do
     @brand = Brand::HttpService.new.brand!(params.dig('brand', 'id'))
+    params.dig('brand', 'file_name').each do |uploaded_file|
+      brand_file = BrandFile::BuildService::Build(uploaded_file)
+      content = File.open(uploaded_file.tempfile.path, 'rb', &:read)
+      # body = uploaded_file.read.force_encoding("ISO-8859-1").encode("UTF-8")
+      # Base64.encode64('12345') 'MTIzNDU='
+      Brand::HttpService.new.add_file!(params.dig('brand', 'id'), brand_file.full_name, Base64.encode64('12345')[0..-2])
+    end
     redirect_to admin_brandpage_show_path(id: params.dig('brand', 'id'))
   end
 
   controller do
-    #    rescue_from Brand::HttpService, with: :render_http_error
+    rescue_from Brand::HttpService::HttpServiceError, with: :render_http_error
     def index
       @brand_collection = Brand::HttpService.new.brands!
     end
 
-    # def render_http_error(e)
-    #
-    # end
+    def render_http_error(e)
+      @error = e
+      render 'shared/error_message', layout: 'active_admin'
+    end
   end
 end
