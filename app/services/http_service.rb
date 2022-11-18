@@ -48,7 +48,7 @@ class HttpService
   def subject!(id)
     target_url = make_url(@brand_service_url, entry_point, id.to_s).to_s
     response = Faraday.get(target_url)
-    return subject.new(JSON.parse(response.body)['data']) if response.status == 200
+    return subject_class.new(JSON.parse(response.body)['data']) if response.status == 200
 
     raise HttpServiceNotFoundError, "Постамат с id=#{id} не найден" if response.status == 404
 
