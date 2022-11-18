@@ -2,7 +2,7 @@
 
 class Brand < BaseModel
 
-  attr_accessor :id, :name, :state, :files, :building_history, :date_of_create, :date_of_update
+  attr_accessor :id, :name, :state, :files, :building_history, :date_of_create, :date_of_update, :description
 
   validates :name, presence: true
 
@@ -10,6 +10,7 @@ class Brand < BaseModel
                             'name' => :name,
                             'state' => :state,
                             'files' => :files,
+                            'description' => :description,
                             'buildingHistory' => :building_history,
                             'dateCreate' => :date_of_create,
                             'dateUpdate' => :date_of_update }.freeze
@@ -34,24 +35,14 @@ class Brand < BaseModel
     %i[id name state date_of_create date_of_update]
   end
 
-  def self.primary_key
-    'id'
-  end
-
-  def self.inheritance_column
-    'id'
-  end
-
-  # def self.ransack(params = {}, options = {})
-  #   byebug
-  #   Ransack::Search.new(self, params, options)
+  # def self.primary_key
+  #   'id'
+  # end
+  #
+  # def self.inheritance_column
+  #   'id'
   # end
 
-  # def ransack(hash_attributes = {})
-  #   ActiveRecord.new.ransack()
-  # end
-
-  # Список атрибутов для сериализации
   def attributes
     translated_array = translate_file_names_hash.values.inject([]) do |result, attribute_name|
       result << case attribute_name

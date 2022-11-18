@@ -17,4 +17,8 @@ class BuildingHistory < BaseModel
   def parse_attribute(attribute_name, value)
     value
   end
+
+  def self.columns
+    %i[success error_message date_of_create]
+  end
 end

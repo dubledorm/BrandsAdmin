@@ -15,6 +15,10 @@ ru:
         one: Файл
         two: Файлы
         other: Файлы
+      building_history:
+        one: История сборок
+        two: История сборок
+        other: История сборок
     attributes:
       brand:
         id: Ид-р
@@ -25,7 +29,10 @@ ru:
         path: Маршрут
         full_name: Полное имя
         date_of_create: Дата создания
-
+      building_history:
+        success: Результат
+        error_message: Ошибка
+        date_of_create: Дата создания
     errors:
       models:
         brand/http_service:

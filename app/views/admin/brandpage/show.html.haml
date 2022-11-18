@@ -7,4 +7,9 @@
   %h3
     = BrandFile.model_name.human(count: 3)
   .panel_contents
-    = render partial: 'brand_files', locals: { brand: @brand }
+    = render partial: 'shared/paginated_table', locals: { subject_class: BrandFile, subject_collection: @brand.files }
+.panel
+  %h3
+    = BuildingHistory.model_name.human(count: 3)
+  .panel_contents
+    = render partial: 'shared/paginated_table', locals: { subject_class: BuildingHistory, subject_collection: @brand.building_history }

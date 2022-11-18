@@ -2,11 +2,12 @@
 
 class BrandFile < BaseModel
 
-  attr_accessor :name, :path, :full_name, :date_of_create
+  attr_accessor :name, :path, :full_name, :date_of_create, :id
 
   validates :name, :path, :full_name, :date_of_create, presence: true
 
-  TRANSLATE_FIELD_NAMES = { 'name' => :name,
+  TRANSLATE_FIELD_NAMES = { 'id' => :id,
+                            'name' => :name,
                             'path' => :path,
                             'fullName' => :full_name,
                             'dateCreate' => :date_of_create }.freeze

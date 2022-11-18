@@ -5,6 +5,7 @@ class BaseModel
   include ActiveModel::Model
   include ActiveModel::Serializers::JSON
   extend ActiveModel::Translation
+  include ActiveModel::Conversion
 
   def initialize(hash_attributes = {})
     self.attributes = hash_attributes
