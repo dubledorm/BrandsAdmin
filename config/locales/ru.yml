@@ -29,6 +29,7 @@ ru:
         name: Название
         state: Состояние
       brand_file:
+        id: Ид-р
         name: Имя
         path: Маршрут
         full_name: Полное имя

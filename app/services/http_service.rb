@@ -50,7 +50,7 @@ class HttpService
     response = Faraday.get(target_url)
     return subject_class.new(JSON.parse(response.body)['data']) if response.status == 200
 
-    raise HttpServiceNotFoundError, "Постамат с id=#{id} не найден" if response.status == 404
+    raise HttpServiceNotFoundError, "Объект с id=#{id} не найден" if response.status == 404
 
     raise HttpServiceError, response.body
   end
@@ -75,7 +75,7 @@ class HttpService
       req.body = subject_attributes.to_json
     end
 
-    raise HttpServiceNotFoundError, "Постамат с id=#{id} не найден" if response.status == 404
+    raise HttpServiceNotFoundError, "Объект с id=#{id} не найден" if response.status == 404
 
     raise HttpServiceError, response.body unless response.status == 200
   end
@@ -87,7 +87,7 @@ class HttpService
       req.headers['accept'] = 'text/plain'
     end
 
-    raise HttpServiceNotFoundError, "Постамат с id=#{id} не найден" if response.status == 404
+    raise HttpServiceNotFoundError, "Объект с id=#{id} не найден" if response.status == 404
 
     raise HttpServiceError, response.body unless response.status == 200
   end

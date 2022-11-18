@@ -71,13 +71,14 @@ ActiveAdmin.register_page 'BrandPage' do
   page_action :save_files_to_brand, method: :post do
     @brand = http_service.subject!(params.required('brand')[:id]) # Только для проверки существования
     params.dig('brand', 'file_name').each do |uploaded_file|
-      brand_file = BrandFile::BuildService::Build(uploaded_file)
-      content = File.open(uploaded_file.tempfile.path, 'rb', &:read)
-      # body = uploaded_file.read.force_encoding("ISO-8859-1").encode("UTF-8")
-      # Base64.encode64('12345') 'MTIzNDU='
-      http_service.add_file!(params.dig('brand', 'id'), brand_file.full_name, Base64.encode64('12345')[0..-2])
+      Brand::AddFileService.add_file(@brand, uploaded_file, http_service)
     end
     redirect_to admin_brandpage_show_path(id: params.dig('brand', 'id'))
+  end
+
+  page_action :delete_file, method: :delete do
+    http_service.delete_file!(params.required(:id), params.required(:file_id))
+    redirect_to admin_brandpage_show_path(id: params.required(:id))
   end
 
   controller do

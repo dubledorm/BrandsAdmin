@@ -7,7 +7,10 @@
   %h3
     = BrandFile.model_name.human(count: 3)
   .panel_contents
-    = render partial: 'shared/paginated_table', locals: { subject_class: BrandFile, subject_collection: @brand.files }
+    = render layout: 'shared/paginated_table', locals: { subject_class: BrandFile, subject_collection: @brand.files } do |subject|
+      = link_to I18n.t('delete'), admin_brandpage_delete_file_path(id: @brand.id, file_id: subject.id),
+      class: 'delete_link member_link c-button c-button--error u-xsmall',
+      data: {confirm: I18n.t('delete_file_sure'), method: :delete}
 .panel
   %h3
     = BuildingHistory.model_name.human(count: 3)

@@ -21,6 +21,6 @@ class BrandFile < BaseModel
   end
 
   def self.columns
-    %i[name path full_name date_of_create]
+    %i[id name path full_name date_of_create]
   end
 end
