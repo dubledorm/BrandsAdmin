@@ -19,6 +19,10 @@ ru:
         one: История сборок
         two: История сборок
         other: История сборок
+      postamat:
+        one: Постамат
+        two: Постаматы
+        other: Постаматы
     attributes:
       brand:
         id: Ид-р
@@ -33,6 +37,13 @@ ru:
         success: Результат
         error_message: Ошибка
         date_of_create: Дата создания
+      postamat:
+        id: Ид-р
+        number: Номер
+        url: Url
+        description: Описание
+        date_of_create: Дата создания
+        date_of_update: Дата изменения
     errors:
       models:
         brand/http_service:

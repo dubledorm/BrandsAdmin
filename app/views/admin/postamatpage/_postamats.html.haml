@@ -1,0 +1,6 @@
+.table_tools
+= render layout: 'shared/paginated_table', locals: { subject_class: Postamat, subject_collection: @postamat_collection } do |subject|
+  = link_to I18n.t('show'), admin_postamatpage_show_path(id: subject.id), class: 'view_link member_link c-button c-button--info u-xsmall'
+  = link_to I18n.t('edit'), admin_postamatpage_edit_path(id: subject.id), class: 'edit_link member_link c-button c-button--info u-xsmall'
+  = link_to I18n.t('delete'), admin_postamatpage_delete_path(id: subject.id), class: 'delete_link member_link c-button c-button--error u-xsmall',
+                  data: {confirm: I18n.t('delete_postamat_sure'), method: :delete}
