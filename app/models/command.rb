@@ -5,7 +5,7 @@ class Command < BaseModel
 
   attr_accessor :id, :brand_id, :brand_name, :state, :build_url, :postamats, :date_of_create
 
-  validates :brand_id, :brand_name, :state, presence: true
+  validates :brand_id, :postamats, presence: true
 
   TRANSLATE_FIELD_NAMES = { 'id' => :id,
                             'brandId' => :brand_id,
@@ -24,7 +24,7 @@ class Command < BaseModel
   end
 
   def self.columns
-    %i[id brand_id brand_name state build_url]
+    %i[id brand_id brand_name state build_url postamats]
   end
 
   def attributes
@@ -37,5 +37,16 @@ class Command < BaseModel
                 end
     end
     Hash[*translated_array.flatten]
+  end
+
+  def to_json(*_args)
+    invert_name = { id: 'id',
+                    brand_id: 'brandId',
+                    brand_name: 'brandName',
+                    state: 'status',
+                    build_url: 'build',
+                    date_of_create: 'dateCreate',
+                    postamats: 'postamatIds'}.freeze
+    Hash[*as_json.inject([]) { |result, (key, value)| result << invert_name[key.to_sym] << value }].to_json
   end
 end

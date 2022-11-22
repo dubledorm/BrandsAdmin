@@ -13,6 +13,28 @@ ActiveAdmin.register_page 'CommandPage' do
     render 'show', layout: 'active_admin'
   end
 
+  page_action :new, method: :get do
+    @brand = Brand::HttpService.new.subject!(params.required('brand_id'))
+    @command = Command.new
+    @command.brand_id = @brand.id
+    @command.brand_name = @brand.name
+    render 'new', layout: 'active_admin'
+  end
+
+  page_action :create, method: :post do
+    @command = Command.new
+    @command.brand_id = (params.required('command').dig('brand_id'))
+    @command.brand_name = (params.required('command').dig('brand_name'))
+    @command.postamats = (params.required('command').dig('postamats'))
+    unless @command.valid? && Command::ValidatePostamatsService.valid?(@command)
+      render 'new', layout: 'active_admin'
+      return
+    end
+
+    @command.postamats = @command.postamats.split(',').map { |item| item.gsub(' ', '') }
+    http_service.create!(@command)
+    redirect_to admin_commandpage_path
+  end
 
   controller do
 

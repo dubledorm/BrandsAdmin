@@ -3,9 +3,9 @@
     = f.hidden_field(:id)
     %fieldset.inputs
       %ol
-        = text_input_field(f, :number, @postamat)
+        = text_input_field(f, :number, @postamat, readonly: true)
         = text_input_field(f, :url, @postamat)
-        = text_area_input_field(f, :description, @postamat, false)
+        = text_area_input_field(f, :description, @postamat, required: false)
     %fieldset.actions
       %ol
         %li.action.input_action

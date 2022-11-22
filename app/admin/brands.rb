@@ -8,17 +8,17 @@ ActiveAdmin.register_page 'BrandPage' do
     link_to I18n.t('create_brand'), admin_brandpage_new_path
   end
 
-  action_item :add_files, only: :show do
-    if http_service.subject!(params.required(:id)).decorate.editable?
-      link_to I18n.t('add_files_to_brand'), admin_brandpage_add_files_to_brand_path(id: params['id'])
-    end
+  action_item :create_command, only: :show do
+    link_to I18n.t('create_command'), admin_commandpage_new_path(brand_id: params['id']) if brand.relisable?
+  end
+
+  action_item :show_commands, only: :show do
+    link_to I18n.t('add_files_to_brand'), admin_brandpage_add_files_to_brand_path(id: params['id']) if brand.editable?
   end
 
   action_item :build_brand, only: :show do
-    if http_service.subject!(params.required(:id)).decorate.editable?
-      link_to I18n.t('build_brand'), admin_brandpage_build_brand_path(id: params['id']),
-              data: { confirm: I18n.t('build_brand_sure'), method: :post }
-    end
+    link_to I18n.t('build_brand'), admin_brandpage_build_brand_path(id: params['id']),
+            data: { confirm: I18n.t('build_brand_sure'), method: :post } if brand.editable?
   end
 
   content do
@@ -31,7 +31,7 @@ ActiveAdmin.register_page 'BrandPage' do
   end
 
   page_action :edit, method: :get do
-    @brand = http_service.subject!(params.required(:id))
+    @brand = brand
     render 'edit', layout: 'active_admin'
   end
 
@@ -53,7 +53,7 @@ ActiveAdmin.register_page 'BrandPage' do
 
 
   page_action :show, method: :get do
-    @brand = http_service.subject!(params.required(:id)).decorate
+    @brand = brand
     render 'show', layout: 'active_admin'
   end
 
@@ -68,7 +68,7 @@ ActiveAdmin.register_page 'BrandPage' do
   end
 
   page_action :add_files_to_brand, method: :get do
-    @brand = http_service.subject!(params.required(:id))
+    @brand = brand
     render 'add_files_to_brand', layout: 'active_admin'
   end
 
@@ -107,6 +107,10 @@ ActiveAdmin.register_page 'BrandPage' do
 
     def brand_params
       params.required('brand').permit('name')
+    end
+
+    def brand
+      @brand ||= http_service.subject!(params.required(:id)).decorate
     end
   end
 end

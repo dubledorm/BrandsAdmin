@@ -5,6 +5,18 @@ ru:
       created_at: Создан
       updated_at: Изменён
   activerecord:
+    models:
+      admin_user:
+        one: Пользователь
+        two: Пользователи
+        other: Пользователи
+    attributes:
+      admin_user:
+        id: Ид-р
+        email: EMail
+        current_sign_in_at: Последний логин
+        sign_in_count: Кол-во входов
+        created_at: Дата создания
   activemodel:
     models:
       brand:
@@ -99,4 +111,12 @@ ru:
             number:
               <<: *fielderrors
             url:
+              <<: *fielderrors
+        command:
+          attributes:
+            brand_id:
+              <<: *fielderrors
+            brand_name:
+              <<: *fielderrors
+            postamats:
               <<: *fielderrors

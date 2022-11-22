@@ -13,6 +13,10 @@ class BrandDecorator < Draper::Decorator
     %w[draft builderror].include?(object.state.downcase)
   end
 
+  def relisable?
+    %w[successfullybuilt].include?(object.state.downcase)
+  end
+
   def building_history
     object.building_history.map(&:decorate)
   end

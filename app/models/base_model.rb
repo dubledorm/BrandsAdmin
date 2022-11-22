@@ -34,4 +34,9 @@ class BaseModel
       result << [attribute_name.to_s, send(attribute_name)]
     end.flatten]
   end
+
+  def to_json(*_args)
+    invert_name = translate_field_names_hash.invert
+    Hash[*as_json.inject([]) { |result, (key, value)| result << invert_name[key.to_sym] << value }].to_json
+  end
 end

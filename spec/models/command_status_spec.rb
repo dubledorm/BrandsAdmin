@@ -9,10 +9,10 @@ RSpec.describe Command, type: :model do
                                  "dateUpdate": "2022-11-19T18:23:38.502Z",
                                  "errors": [
                                    { "message": "message1",
-                                     "detail": "detail1",
+                                     "details": "detail1",
                                      "dateCreate": "2022-11-19T18:23:38.502Z" },
                                    { "message": "message2",
-                                     "detail": "detail2",
+                                     "details": "detail2",
                                      "dateCreate": "2022-11-20T18:23:38.502Z" }
                                  ] },
                                    { "number": "123-457",

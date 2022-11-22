@@ -62,6 +62,7 @@ class HttpService
       req.headers['accept'] = 'text/plain'
       req.body = subject_instance.to_json
     end
+
     raise HttpServiceError, response.body unless response.status == 200
 
     subject_class.new(JSON.parse(response.body)['data'])

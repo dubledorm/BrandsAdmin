@@ -1,0 +1,11 @@
+.without_sidebar
+  = form_with(model: @command, local: true, url: admin_commandpage_create_path, class: 'formtastic admin_user') do |f|
+    %fieldset.inputs
+      %ol
+        = text_input_field(f, :brand_id, @command, readonly: true)
+        = text_input_field(f, :brand_name, @command, readonly: true)
+        = text_area_input_field(f, :postamats, @command, hint: I18n.t('input_postamat_numbers'))
+    %fieldset.actions
+      %ol
+        %li.action.input_action
+          = f.submit(I18n.t('save'))

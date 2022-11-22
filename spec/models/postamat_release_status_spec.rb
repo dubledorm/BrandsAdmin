@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe PostamatReleaseStatus, type: :model do
-  ERROR_ATTRIBUTES1 = { 'message' => '123-1', 'detail' => '456-1', 'dateCreate' => '2022-11-17T09:18:48.852Z' }.freeze
-  ERROR_ATTRIBUTES2 = { 'message' => '123-2', 'detail' => '456-2', 'dateCreate' => '2022-11-17T09:18:48.852Z' }.freeze
+  ERROR_ATTRIBUTES1 = { 'message' => '123-1', 'details' => '456-1', 'dateCreate' => '2022-11-17T09:18:48.852Z' }.freeze
+  ERROR_ATTRIBUTES2 = { 'message' => '123-2', 'details' => '456-2', 'dateCreate' => '2022-11-17T09:18:48.852Z' }.freeze
   PRS_ATTRIBUTES = { 'number' => '123-456', 'status' => 'New', 'errors' =>
     [ERROR_ATTRIBUTES1, ERROR_ATTRIBUTES2] }.freeze
   PRS_ATTRIBUTES_JSON = '{"postamat_number":"123-456","state":"New",' \

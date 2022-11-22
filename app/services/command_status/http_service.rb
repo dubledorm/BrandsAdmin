@@ -3,7 +3,7 @@
 require 'uri'
 
 class CommandStatus
-  # Расширение общего HttpService для работы с коллекцией брэндов
+  # Расширение общего HttpService для чтения статуса релиза
   class HttpService < HttpService
     ENTRY_POINT = 'Commands'
 
