@@ -12,7 +12,7 @@ class BrandFile < BaseModel
                             'fullName' => :full_name,
                             'dateCreate' => :date_of_create }.freeze
 
-  def translate_file_names_hash
+  def translate_field_names_hash
     TRANSLATE_FIELD_NAMES
   end
 

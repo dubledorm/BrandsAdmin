@@ -15,7 +15,7 @@ class BaseModel
     return unless hash
 
     hash.each do |key, value|
-      send("#{translate_file_names_hash[key.to_s]}=", parse_attribute(translate_file_names_hash[key.to_s], value))
+      send("#{translate_field_names_hash[key.to_s]}=", parse_attribute(translate_field_names_hash[key.to_s], value))
     end
   end
 
@@ -23,13 +23,13 @@ class BaseModel
     raise NotImplementedError
   end
 
-  def translate_file_names_hash
+  def translate_field_names_hash
     raise NotImplementedError
   end
 
   # Список атрибутов для сериализации
   def attributes
-    Hash[*translate_file_names_hash.values.inject([]) do |result, attribute_name|
+    Hash[*translate_field_names_hash.values.inject([]) do |result, attribute_name|
       result << [attribute_name.to_s, send(attribute_name)]
     end.flatten]
   end

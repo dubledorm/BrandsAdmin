@@ -9,6 +9,7 @@ class BrandFile
     end
   end
 
+  # Основная цель сервиса выделить маршрут файла из переданного заголовка uploaded_file
   class BuildService
     REG_FILENAME = /filename="(?<file_path>[^"]+)"/.freeze
 

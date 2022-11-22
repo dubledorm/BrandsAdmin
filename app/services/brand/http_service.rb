@@ -11,7 +11,7 @@ class Brand
 
     def initialize
       super(ENTRY_POINT, Brand)
-      @index_data_way = %w[data]
+      @index_data_way = %w[data collection]
     end
 
 
@@ -38,13 +38,6 @@ class Brand
       raise HttpServiceNotFoundError, "Не найден брэнд с Id=#{id}" if response.status == 404
 
       raise HttpServiceError, response.body unless response.status == 200
-    end
-
-    private
-
-    def make_url(*args)
-      parts = args.map { |part| part.end_with?('/') ? part[0..-2] : part }
-      parts.join('/')
     end
   end
 end

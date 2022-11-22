@@ -92,7 +92,7 @@ class HttpService
     raise HttpServiceError, response.body unless response.status == 200
   end
 
-  private
+  protected
 
   def make_url(*args)
     parts = args.map { |part| part.end_with?('/') ? part[0..-2] : part }

@@ -10,7 +10,7 @@ class BuildingHistory < BaseModel
                             'errorMessage' => :error_message,
                             'dateCreate' => :date_of_create }.freeze
 
-  def translate_file_names_hash
+  def translate_field_names_hash
     TRANSLATE_FIELD_NAMES
   end
 

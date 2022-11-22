@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 PS_ATTRIBUTES = { 'number' => '111-000', 'url' => 'www.yandex.ru', 'description' => 'Описание',
-                  'brandId' => '10', 'createDate' => '2022-10-19T13:16:20.609+00:00',
-                  'updateDate' => '2022-10-20T13:16:20.609+00:00' }.freeze
+                  'brandId' => '10', 'dateCreate' => '2022-10-19T13:16:20.609+00:00',
+                  'dateUpdate' => '2022-10-20T13:16:20.609+00:00' }.freeze
 PS_ATTRIBUTES_JSON = '{"id":null,"number":"111-000","url":"www.yandex.ru","brand_id":"10","description":"Описание",' \
 '"date_of_create":"2022-10-19T13:16:20.609+00:00","date_of_update":"2022-10-20T13:16:20.609+00:00"}'
 

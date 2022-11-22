@@ -54,8 +54,6 @@ ActiveAdmin.register_page 'PostamatPage' do
   end
 
   controller do
-    ENTRY_POINT = 'postamats'
-
     rescue_from HttpService::HttpServiceError, with: :render_http_error
     def index
       @postamat_collection = http_service.index!
@@ -67,7 +65,7 @@ ActiveAdmin.register_page 'PostamatPage' do
     end
 
     def http_service
-      @http_service ||= HttpService.new(ENTRY_POINT, Postamat)
+      @http_service ||= HttpService.new('postamats', Postamat)
     end
   end
 end

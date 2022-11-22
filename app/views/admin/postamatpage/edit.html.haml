@@ -1,26 +1,11 @@
 .without_sidebar
-  = form_with(model: @postamat, local: true, url: admin_postamat_update_path, class: 'formtastic admin_user', method: :patch) do |f|
+  = form_with(model: @postamat, local: true, url: admin_postamatpage_update_path, class: 'formtastic admin_user', method: :patch) do |f|
     = f.hidden_field(:id)
     %fieldset.inputs
       %ol
-        %li.input.required.stringish
-          = f.label(:number, class: 'label')
-          = f.text_field(:number)
-          - unless @postamat.errors[:number].empty?
-            %p.inline-errors
-              = @postamat.errors[:number].join(', ')
-        %li.input.required.stringish
-          = f.label(:url, class: 'label')
-          = f.text_field(:url)
-          - unless @postamat.errors[:url].empty?
-            %p.inline-errors
-              = @postamat.errors[:url].join(', ')
-        %li.input.stringish
-          = f.label(:description, class: 'label')
-          = f.text_field(:description)
-          - unless @postamat.errors[:description].empty?
-            %p.inline-errors
-              = @postamat.errors[:description].join(', ')
+        = text_input_field(f, :number, @postamat)
+        = text_input_field(f, :url, @postamat)
+        = text_area_input_field(f, :description, @postamat, false)
     %fieldset.actions
       %ol
         %li.action.input_action

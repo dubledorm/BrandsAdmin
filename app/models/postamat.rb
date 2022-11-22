@@ -12,10 +12,10 @@ class Postamat < BaseModel
                             'url' => :url,
                             'brandId' => :brand_id,
                             'description' => :description,
-                            'createDate' => :date_of_create,
-                            'updateDate' => :date_of_update }.freeze
+                            'dateCreate' => :date_of_create,
+                            'dateUpdate' => :date_of_update }.freeze
 
-  def translate_file_names_hash
+  def translate_field_names_hash
     TRANSLATE_FIELD_NAMES
   end
 

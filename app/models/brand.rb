@@ -20,7 +20,7 @@ class Brand < BaseModel
     @building_history = []
     super
   end
-  def translate_file_names_hash
+  def translate_field_names_hash
     TRANSLATE_FIELD_NAMES
   end
 
@@ -35,16 +35,8 @@ class Brand < BaseModel
     %i[id name state date_of_create date_of_update]
   end
 
-  # def self.primary_key
-  #   'id'
-  # end
-  #
-  # def self.inheritance_column
-  #   'id'
-  # end
-
   def attributes
-    translated_array = translate_file_names_hash.values.inject([]) do |result, attribute_name|
+    translated_array = translate_field_names_hash.values.inject([]) do |result, attribute_name|
       result << case attribute_name
                 when :building_history
                   [attribute_name.to_s, building_history.map(&:attributes).to_json]

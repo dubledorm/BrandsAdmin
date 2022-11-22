@@ -1,0 +1,3 @@
+.table_tools
+= render layout: 'shared/paginated_table', locals: { subject_class: Command, subject_collection: @command_collection } do |subject|
+  = link_to I18n.t('show'), admin_commandstatuspage_show_path(id: subject.id), class: 'view_link member_link c-button c-button--info u-xsmall'

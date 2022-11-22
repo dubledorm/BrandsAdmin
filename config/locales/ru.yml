@@ -19,21 +19,45 @@ ru:
         one: История сборок
         two: История сборок
         other: История сборок
+      command:
+        one: Команда на релиз
+        two: Команды на релиз
+        other: Команды на релиз
+      command_status:
+        one: Статус команды
+        two: Статусы команд
+        other: Статусы команд
       postamat:
         one: Постамат
         two: Постаматы
         other: Постаматы
+      postamat_release_status:
+        one: Статус релиза
+        two: Статусы релиза
+        other: Статусы релиза
     attributes:
       brand:
         id: Ид-р
         name: Название
         state: Состояние
+        date_of_create: Дата создания
+        date_of_update: Дата изменения
       brand_file:
         id: Ид-р
         name: Имя
         path: Маршрут
         full_name: Полное имя
         date_of_create: Дата создания
+      command:
+        id: Ид-р
+        brand_id: Ид-р брэнда
+        brand_name: Имя брэнда
+        state: Состояние
+        build_url: Url сборки
+        postamats: Постаматы
+      command_status:
+        success: Успешно
+        error: Ошибка
       building_history:
         success: Результат
         error_message: Ошибка
@@ -45,7 +69,22 @@ ru:
         description: Описание
         date_of_create: Дата создания
         date_of_update: Дата изменения
+      postamat_release_status:
+        postamat_number: Номер постамата
+        state: Состояние
+        errors: Ошибки
+        date_of_create: Дата создания
+        date_of_update: Дата изменения
     errors:
+      aliases:
+        _field_errors_alias: &fielderrors
+          blank: Должно быть заполнено
+          required: Должно быть заполнено
+          taken: Значение уже используется
+          greater_than: Должно быть больше 0
+          not_an_integer: Должно быть целым числом
+          less_than_or_equal_to: Превышает верхнее разрешённое значение
+          inclusion: Должно содержать значение из предопределённого списка
       models:
         brand/http_service:
           attributes:
@@ -54,4 +93,10 @@ ru:
         brand:
           attributes:
             name:
-              blank: Поле должно быть заполнено
+              <<: *fielderrors
+        postamat:
+          attributes:
+            number:
+              <<: *fielderrors
+            url:
+              <<: *fielderrors

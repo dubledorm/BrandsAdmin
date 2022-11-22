@@ -35,10 +35,7 @@ ActiveAdmin.register_page 'BrandPage' do
       return
     end
 
-    # TODO: удалить следующий маппинг после того как Матвей исправит функцию update
-    new_params = Hash[*brand_params.to_h.map { |key, value| ["New#{key.capitalize}", value] }.flatten]
-
-    http_service.update!(params.required('brand').required('id'), new_params)
+    http_service.update!(params.required('brand').required('id'), params.required('brand'))
     redirect_to admin_brandpage_path
   end
 
