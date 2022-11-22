@@ -46,7 +46,7 @@ ActiveAdmin.register_page 'BrandPage' do
 
 
   page_action :show, method: :get do
-    @brand = http_service.subject!(params.required(:id))
+    @brand = http_service.subject!(params.required(:id)).decorate
     render 'show', layout: 'active_admin'
   end
 
@@ -81,7 +81,7 @@ ActiveAdmin.register_page 'BrandPage' do
   controller do
     rescue_from HttpService::HttpServiceError, with: :render_http_error
     def index
-      @brand_collection = http_service.index!
+      @brand_collection = BrandDecorator.decorate_collection(http_service.index!)
     end
 
     def render_http_error(e)

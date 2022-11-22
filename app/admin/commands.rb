@@ -18,7 +18,7 @@ ActiveAdmin.register_page 'CommandPage' do
 
     rescue_from HttpService::HttpServiceError, with: :render_http_error
     def index
-      @command_collection = http_service.index!
+      @command_collection = CommandDecorator.decorate_collection(http_service.index!)
     end
 
     def render_http_error(e)

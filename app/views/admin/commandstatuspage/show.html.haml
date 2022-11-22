@@ -2,9 +2,10 @@
   %h3
     = CommandStatus.model_name.human
   .panel_contents
-    = render partial: 'shared/attribute_table', locals: { subject: @command_status }
+    = render partial: 'shared/attribute_table', locals: { subject: @command_status.decorate }
 .panel
   %h3
     = PostamatReleaseStatus.model_name.human(count: 3)
   .panel_contents
-    = render partial: 'shared/paginated_table', locals: { subject_class: PostamatReleaseStatus, subject_collection: @command_status.postamat_release_statuses }
+    = render partial: 'shared/paginated_table', locals: { subject_class: PostamatReleaseStatus,
+    subject_collection: PostamatReleaseStatusDecorator.decorate_collection(@command_status.postamat_release_statuses) }

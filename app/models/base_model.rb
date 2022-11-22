@@ -6,6 +6,7 @@ class BaseModel
   include ActiveModel::Serializers::JSON
   extend ActiveModel::Translation
   include ActiveModel::Conversion
+  include Draper::Decoratable
 
   def initialize(hash_attributes = {})
     self.attributes = hash_attributes
