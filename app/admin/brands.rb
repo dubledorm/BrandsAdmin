@@ -9,8 +9,15 @@ ActiveAdmin.register_page 'BrandPage' do
   end
 
   action_item :add_files, only: :show do
-    if http_service.subject!(params.required(:id)).state == 'Draft'
+    if http_service.subject!(params.required(:id)).decorate.editable?
       link_to I18n.t('add_files_to_brand'), admin_brandpage_add_files_to_brand_path(id: params['id'])
+    end
+  end
+
+  action_item :build_brand, only: :show do
+    if http_service.subject!(params.required(:id)).decorate.editable?
+      link_to I18n.t('build_brand'), admin_brandpage_build_brand_path(id: params['id']),
+              data: { confirm: I18n.t('build_brand_sure'), method: :post }
     end
   end
 
@@ -71,6 +78,11 @@ ActiveAdmin.register_page 'BrandPage' do
       Brand::AddFileService.add_file(@brand, uploaded_file, http_service)
     end
     redirect_to admin_brandpage_show_path(id: params.dig('brand', 'id'))
+  end
+
+  page_action :build_brand, method: :post do
+    http_service.build_brand!(params.required('id'))
+    redirect_to admin_brandpage_show_path(id: params.dig('id'))
   end
 
   page_action :delete_file, method: :delete do

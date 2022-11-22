@@ -8,6 +8,7 @@ class Brand
     ENTRY_POINT = 'brands'
     ADD_FILE_SUFFIX = 'files'
     DELETE_FILE_SUFFIX = 'files'
+    BUILD_BRAND_SUFFIX = 'build'
 
     def initialize
       super(ENTRY_POINT, Brand)
@@ -36,6 +37,18 @@ class Brand
       end
 
       raise HttpServiceNotFoundError, "Не найден брэнд с Id=#{id}" if response.status == 404
+
+      raise HttpServiceError, response.body unless response.status == 200
+    end
+
+    def build_brand!(id)
+      target_url = make_url(@brand_service_url, ENTRY_POINT, id.to_s, BUILD_BRAND_SUFFIX).to_s
+      response = Faraday.post(target_url) do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['accept'] = 'text/plain'
+      end
+
+      raise HttpServiceNotFoundError, "Брэнд с id=#{id} не найден" if response.status == 404
 
       raise HttpServiceError, response.body unless response.status == 200
     end
