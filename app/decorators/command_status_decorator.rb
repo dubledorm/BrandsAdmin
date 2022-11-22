@@ -7,6 +7,6 @@ class CommandStatusDecorator < Draper::Decorator
   SUCCESS_VALUES = { 'true' => 'Успешно', 'false' => 'Ошибка' }.freeze
 
   def success
-    SUCCESS_VALUES[object.success.to_s]  || object.success.to_s
+    SUCCESS_VALUES[object.success.to_s] || object.success.to_s
   end
 end

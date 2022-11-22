@@ -13,6 +13,10 @@ class BrandDecorator < Draper::Decorator
     object.state == 'Draft'
   end
 
+  def building_history
+    object.building_history.map(&:decorate)
+  end
+
   def state
     STATE_VALUES[object.state.downcase] || object.state
   end
