@@ -10,7 +10,7 @@ class BrandDecorator < Draper::Decorator
                     'builderror' => 'Ошибка сборки' }.freeze
 
   def editable?
-    object.state == 'Draft'
+    %w[draft builderror].include?(object.state.downcase)
   end
 
   def building_history
