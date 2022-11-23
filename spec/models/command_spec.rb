@@ -6,7 +6,7 @@ CM_ATTRIBUTES = { 'id' => '123', 'brandId' => '456', 'brandName' => 'name_of_bra
                   'status' => 'completed', 'build' => '789',
                   'postamats' => %w[123-03 123-09] }.freeze
 CM_ATTRIBUTES_JSON = '{"id":"123","brandId":"456","brandName":"name_of_brand","status":"completed",' \
-'"build":"789","dateCreate":null,"postamats":["123-03","123-09"]}'
+'"build":"789","dateCreate":null,"postamatIds":["123-03","123-09"]}'
 
 
 RSpec.describe Command, type: :model do

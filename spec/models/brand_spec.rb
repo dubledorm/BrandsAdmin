@@ -13,7 +13,7 @@ ATTRIBUTES = { 'id' => '634ff7887b473eae24536630', 'name' => 'PickPointTest', 's
                                        'dateCreate' => '2022-10-20T09:19:17.754+00:00' }],
                'dateCreate' => '2022-10-19T13:11:36.441+00:00',
                'dateUpdate' => '2022-10-20T12:44:42.235+00:00' }.freeze
-ATTRIBUTES_JSON = '{"name":"style.jpg","path":"site","full_name":"site\\\\style.jpg","date_of_create":"2022-10-19T13:16:20.609+00:00"}'
+ATTRIBUTES_JSON = '{"name":"style.jpg","path":"site","fullName":"site\\\\style.jpg","dateCreate":"2022-10-19T13:16:20.609+00:00"}'
 
 RSpec.describe Brand, type: :model do
 

@@ -28,14 +28,14 @@ class PostamatReleaseStatus < BaseModel
 
   def attributes
     translated_array = translate_field_names_hash.values.inject([]) do |result, attribute_name|
-      result << case attribute_name
-                when :errors
-                  [attribute_name.to_s, errors.map(&:attributes).to_json]
-                else
-                  [attribute_name.to_s, send(attribute_name)]
-                end
+      result + case attribute_name
+               when :errors
+                 [attribute_name.to_s, errors.map(&:to_json)]
+               else
+                 [attribute_name.to_s, send(attribute_name)]
+               end
     end
-    Hash[*translated_array.flatten]
+    Hash[*translated_array]
   end
 
   private

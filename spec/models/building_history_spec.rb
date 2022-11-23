@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-BH_ATTRIBUTES = { 'isSuccess' => false, 'errorMessage' => 'Ошибка при выгрузке с S3',
-                  'dateCreate' => '2022-10-20T09:17:20.156+00:00' }.freeze
-BH_ATTRIBUTES_JSON = '{"success":false,"error_message":"Ошибка при выгрузке с S3","date_of_create":"2022-10-20T09:17:20.156+00:00"}'
-
 RSpec.describe BuildingHistory, type: :model do
+  BH_ATTRIBUTES_JSON = '{"isSuccess":false,"errorMessage":"Ошибка при выгрузке с S3",' \
+'"dateCreate":"2022-10-20T09:17:20.156+00:00"}'
+
   describe 'serialization' do
-    let(:subject) { BuildingHistory.new(BH_ATTRIBUTES) }
+    let(:subject) { BuildingHistory.new.from_json(BH_ATTRIBUTES_JSON) }
 
     it { expect(subject.success).to eq(false) }
     it { expect(subject.error_message).to eq('Ошибка при выгрузке с S3') }

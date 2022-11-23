@@ -2,13 +2,11 @@
 
 require 'rails_helper'
 
-RE_ATTRIBUTES = { 'message' => '123', 'details' => '456', 'dateCreate' => '2022-11-17T09:18:48.852Z' }.freeze
-RE_ATTRIBUTES_JSON = '{"message":"123","detail_message":"456","date_of_create":"2022-11-17T09:18:48.852Z"}'
-
-
 RSpec.describe ReleaseError, type: :model do
+  RE_ATTRIBUTES_JSON = '{"message":"123","details":"456","dateCreate":"2022-11-17T09:18:48.852Z"}'
+
   describe 'serialization' do
-    let(:subject) { ReleaseError.new(RE_ATTRIBUTES) }
+    let(:subject) { ReleaseError.new.from_json(RE_ATTRIBUTES_JSON) }
 
     it { expect(subject.message).to eq('123') }
     it { expect(subject.detail_message).to eq('456') }

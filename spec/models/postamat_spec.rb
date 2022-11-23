@@ -2,16 +2,12 @@
 
 require 'rails_helper'
 
-PS_ATTRIBUTES = { 'number' => '111-000', 'url' => 'www.yandex.ru', 'description' => 'Описание',
-                  'brandId' => '10', 'dateCreate' => '2022-10-19T13:16:20.609+00:00',
-                  'dateUpdate' => '2022-10-20T13:16:20.609+00:00' }.freeze
-PS_ATTRIBUTES_JSON = '{"id":null,"number":"111-000","url":"www.yandex.ru","brand_id":"10","description":"Описание",' \
-'"date_of_create":"2022-10-19T13:16:20.609+00:00","date_of_update":"2022-10-20T13:16:20.609+00:00"}'
-
-
 RSpec.describe Postamat, type: :model do
+  PS_ATTRIBUTES_JSON = '{"id":null,"number":"111-000","url":"www.yandex.ru","brandId":"10","description":"Описание",' \
+'"dateCreate":"2022-10-19T13:16:20.609+00:00","dateUpdate":"2022-10-20T13:16:20.609+00:00"}'
+
   describe 'serialization' do
-    let(:subject) { Postamat.new(PS_ATTRIBUTES) }
+    let(:subject) { Postamat.new.from_json(PS_ATTRIBUTES_JSON)}
 
     it { expect(subject.number).to eq('111-000') }
     it { expect(subject.url).to eq('www.yandex.ru') }

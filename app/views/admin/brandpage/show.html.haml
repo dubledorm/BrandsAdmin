@@ -8,7 +8,7 @@
     = BrandFile.model_name.human(count: 3)
   .panel_contents
     = render layout: 'shared/paginated_table', locals: { subject_class: BrandFile, subject_collection: @brand.files } do |subject|
-      = delete_brand_file_link(@brand, subject) if @brand.state == 'Draft'
+      = delete_brand_file_link(@brand, subject) if @brand.editable?
 .panel
   %h3
     = BuildingHistory.model_name.human(count: 3)

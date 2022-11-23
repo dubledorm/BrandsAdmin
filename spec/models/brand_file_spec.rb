@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-FB_ATTRIBUTES = { 'id' => '10', 'name' => 'style.jpg', 'path' => 'site', 'fullName' => 'site\\style.jpg',
-                  'dateCreate' => '2022-10-19T13:16:20.609+00:00' }.freeze
-FB_ATTRIBUTES_JSON = '{"id":"10","name":"style.jpg","path":"site","full_name":"site\\\\style.jpg","date_of_create":"2022-10-19T13:16:20.609+00:00"}'
-
 RSpec.describe BrandFile, type: :model do
+  FB_ATTRIBUTES_JSON = '{"id":"10","name":"style.jpg","path":"site","fullName":' \
+'"site\\\\style.jpg","dateCreate":"2022-10-19T13:16:20.609+00:00"}'
+
   describe 'serialization' do
-    let(:subject) { BrandFile.new(FB_ATTRIBUTES) }
+    let(:subject) { BrandFile.new.from_json(FB_ATTRIBUTES_JSON) }
 
     it { expect(subject.id).to eq('10') }
     it { expect(subject.name).to eq('style.jpg') }
